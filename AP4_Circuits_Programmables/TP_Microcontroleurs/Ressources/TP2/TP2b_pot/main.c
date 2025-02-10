@@ -45,9 +45,6 @@ int readADC(void)
 
 void main(void)
 {
-    // Horloge interne à 8 MHz
-    OSCCON = 0x70;  // IRCF=0111 => 8 MHz
-
     // (A) Config RA0 en entrée analogique pour le potentiomètre
     TRISAbits.TRISA0 = 1;
     ANSELAbits.ANSA0 = 1;
