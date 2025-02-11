@@ -1,3 +1,14 @@
+/* 
+ * File: main.c 
+ * Author: Destruhaut Romain
+ * Comments: JUNIA AP4 2024-2025
+ * Revision history: 
+    * 2025/02/11 : File created
+ */
+
+/*Resultat : Nous observons un cycle ou la led s'allume avec une intensité qui varie s'approchant de 100% puis lentement
+sont intensité diminue de la même manière  */
+
 #include <xc.h>
 #include "configbits.h"
 
