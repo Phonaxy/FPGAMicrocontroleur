@@ -1,0 +1,52 @@
+-- Full Adder en utilisant deux half adders
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity full_adder is
+    port(
+        A     : in  std_logic;
+        B     : in  std_logic;
+        Cin   : in  std_logic;
+        Sum   : out std_logic;
+        Cout  : out std_logic
+    );
+end full_adder;
+
+architecture structure of full_adder is
+    -- Signaux intermédiaires
+    signal sum1, carry1, carry2 : std_logic;
+
+    -- Déclaration du composant du half adder pour utilisation ultérieure
+    component half_adder
+        port(
+            A : in std_logic;
+            B : in std_logic;
+            C : out std_logic;
+            S : out std_logic
+        );
+    end component;
+
+begin
+		-- Première instance half adder
+    HA1 : half_adder
+        port map (
+            A => A,
+            B => B,
+            C => carry1,
+            S => sum1
+        );
+
+		-- Seconde instance half adder
+    HA2 : half_adder
+        port map (
+            A => sum1,
+            B => Cin,
+            C => carry2,
+            S => Sum
+        );
+
+    -- Retenue finale (carry out)
+    Cout <= carry1 or carry2;
+
+end structure;

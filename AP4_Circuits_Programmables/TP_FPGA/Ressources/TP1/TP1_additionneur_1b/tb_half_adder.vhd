@@ -9,7 +9,7 @@ architecture tb of tb_half_adder is
     signal A, B : std_logic;
     signal S, C : std_logic;
 begin
-    UUT : entity half_adder port map (A => A, B => B, S => S, C => C);
+    UUT : entity work.half_adder port map (A => A, B => B, S => S, C => C);
 
     Count_A : process
     begin

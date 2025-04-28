@@ -1,5 +1,23 @@
 --Question a.1.1
 --Pour calculer C en fonction de A et B on a besoin d'un AND 
 --Pour calculer S en fonction de A et B on a besoin d'un XOR
-	
---Question a.1.2
+
+--Question a.2.1
+--Pour réaliser un additionneur complet à partir de deux additionneurs, il faut :
+--Créer deux blocs, chaque bloc étant un demi-additionneurs
+--Avec trois entrées maintenant outre ces deux blocs, A, B et C in, on connecte A et B à A et B d'un premier
+--half-adder
+--Suite à quoi on connecte la sortie de ce premier half-adder (la sortie C out à un OR
+--La sortie S (Sum) du premier half adder va à A dans notre cas du second half adder
+--La première entrée C in rejoint le B de ce second half adder
+--La sortie C out de ce second half adder rejoint l'autre C out dans le OR pour finaliser en un seul C out
+--Et les entrées A et B du second half adder étant bien pluggées, on aura S finale (la somme finale) en sortie
+
+--Question a.3.1
+--Pour réaliser un additionneur à retenue propagée :
+--On peut utiliser notre full-adder qui dispose d'un carry in
+--Premières entrées A et B puis 0 en carry in, et on a la sum
+--Au dessus, on place un autre full-adder
+--Le carry in the ce full adder est le carry out du full adder précèdent
+--Et ainsi de suite
+--Le dernier full-adder a la retenue (carry) out finale

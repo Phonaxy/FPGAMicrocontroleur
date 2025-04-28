@@ -11,7 +11,7 @@ entity half_adder is -- Définition de notre entité / bloc
 		S : out std_logic	-- On définie D comme une sortie
 	);
 end half_adder;
-
+--Définition de l'architecture
 architecture adder of half_adder is
 
 begin
