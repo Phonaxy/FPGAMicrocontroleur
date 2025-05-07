@@ -1,0 +1,7 @@
+entity toplevel is
+	port ( 
+		CLOCK_50_B6A : in std_logic; 
+		KEY          : in std_logic_vector(3 downto 0); 
+		LEDR         : out std_logic_vector(9 downto 0) 
+	); 
+end entity;

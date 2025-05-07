@@ -1,0 +1,7 @@
+--a.2.1
+--Entrées principales :
+--J et K : entrées classiques (commandent le comportement Set/Reset/Toggle) au front d'horloge.
+--clk : horloge (détecte les fronts montants pour l'action synchrone).
+--Entrées asynchrones :
+--Preset (PRE) : force immédiatement (sans attendre l'horloge) la sortie Q à '1'.
+--Reset (CLR ou RST) : force immédiatement la sortie Q à '0'.

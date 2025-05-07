@@ -1,0 +1,63 @@
+--tb_clock_divider
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity tb_clock_divider is
+end tb_clock_divider;
+
+architecture behavior of tb_clock_divider is
+
+    -- Signals for UUT (Unit Under Test)
+    signal CLKin   : std_logic := '0';
+    signal RST     : std_logic := '1';
+    signal N       : std_logic_vector(4 downto 0) := "00010";  -- Divide by 2^(2+1) = 8
+    signal CLKout  : std_logic;
+
+    -- Clock period
+    constant clk_period : time := 10 ns;
+
+begin
+
+    -- Instantiate the clock_divider
+    uut: entity work.clock_divider
+        port map (
+            CLKin  => CLKin,
+            RST    => RST,
+            N      => N,
+            CLKout => CLKout
+        );
+
+    -- Clock process
+    clk_process: process
+    begin
+        while true loop
+            CLKin <= '0';
+            wait for clk_period / 2;
+            CLKin <= '1';
+            wait for clk_period / 2;
+        end loop;
+    end process;
+
+    -- Stimulus process
+    stim_proc: process
+    begin
+        -- Reset the system
+        RST <= '0';
+        wait for 20 ns;
+        RST <= '1';
+
+        -- Let it run for a while to observe CLKout toggling
+        wait for 500 ns;
+
+        -- Optional: test changing N dynamically
+        N <= "00001";  -- Faster output
+        wait for 200 ns;
+
+        N <= "00011";  -- Slower output
+        wait for 500 ns;
+
+        wait;
+    end process;
+
+end behavior;

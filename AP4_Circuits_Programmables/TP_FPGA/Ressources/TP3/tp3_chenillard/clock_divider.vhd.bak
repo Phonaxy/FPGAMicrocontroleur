@@ -1,0 +1,4 @@
+--clock_divider
+library ieee;
+ieee.std_logic_unsigned.all;
+std_logic_vector
