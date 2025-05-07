@@ -1,0 +1,70 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb_bistable is
+end entity;
+
+architecture sim of tb_bistable is
+
+    -- Signals to connect to the DUT
+    signal clk : std_logic := '0';
+    signal rst : std_logic := '0';
+    signal X   : std_logic := '0';
+    signal Y   : std_logic;
+
+    -- Clock period (50 MHz => 20 ns period)
+    constant clk_period : time := 20 ns;
+
+    -- DUT declaration
+    component bistable
+        port (
+            clk : in std_logic;
+            rst : in std_logic;
+            X   : in std_logic;
+            Y   : out std_logic
+        );
+    end component;
+
+begin
+
+    -- Instantiate the DUT (Device Under Test)
+    UUT: bistable
+        port map (
+            clk => clk,
+            rst => rst,
+            X   => X,
+            Y   => Y
+        );
+
+    -- Clock generation
+    clk_process: process
+    begin
+        while true loop
+            clk <= '0';
+            wait for clk_period / 2;
+            clk <= '1';
+            wait for clk_period / 2;
+        end loop;
+    end process;
+
+    -- Stimulus process
+    stim_proc: process
+    begin
+        -- Step 1: reset
+        rst <= '1';
+        wait for 40 ns;
+        rst <= '0';
+
+        -- Step 2: simulate toggle input
+        wait for 40 ns;  X <= '1';  -- A -> B
+        wait for 40 ns;  X <= '0';  -- B -> C
+        wait for 40 ns;  X <= '1';  -- C -> D
+        wait for 40 ns;  X <= '0';  -- D -> A
+        wait for 40 ns;  X <= '1';  -- A -> B again
+        wait for 40 ns;  X <= '0';  -- B -> C
+
+        wait for 100 ns;
+        assert false report "Simulation complete." severity failure;
+    end process;
+
+end sim;
