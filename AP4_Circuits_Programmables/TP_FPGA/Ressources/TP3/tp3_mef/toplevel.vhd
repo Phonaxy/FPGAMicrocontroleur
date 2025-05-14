@@ -13,7 +13,7 @@ end toplevel;
 architecture Behavioral of toplevel is
 
     -- Signaux internes
-    signal clk       : std_logic;
+    signal clk       : std_logic;     
     signal rst       : std_logic;
     signal X         : std_logic;
     signal Y         : std_logic;
